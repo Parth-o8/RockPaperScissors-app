@@ -1,0 +1,17 @@
+{
+  "name": "rock-paper-scissors-app",
+  "version": "1.0.0",
+  "description": "A simple Rock Paper Scissors game built with HTML, CSS, and JavaScript.",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "live-server src"
+  },
+  "keywords": [
+    "rock",
+    "paper",
+    "scissors",
+    "game"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}
