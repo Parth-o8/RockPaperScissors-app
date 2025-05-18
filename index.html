@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hand of Fate – Rock Paper Scissors</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Cinzel:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    </head>
+<body>
+    <nav id="navbar">
+        <div class="nav-content">
+            <div class="nav-title">
+                <img src="logo.png" alt="Logo" class="nav-logo" />
+                Hand of Fate
+            </div>
+            <div class="nav-links">
+                <a href="#landing" class="nav-link">Start</a>
+                <a href="#game-section" class="nav-link">Game Arena</a>
+                <a href="#about-section" class="nav-link">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="bubble-bg">
+        <span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>
+        <span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>
+        <span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>
+        <span class="bubble"></span>
+    </div>
+
+    <section id="landing">
+        <h1 class="landing-title neon-text landing-title-outer">Hand of Fate</h1>
+        <div class="landing-box glass">
+            <div class="hand-bg"></div>
+            <div class="landing-box-content">
+                <div style="height: 80px;"></div>
+                <button id="startGameBtn" class="neon-btn big">Start Game</button>
+                <button id="howToPlayBtn" class="how-to-play-link">How to Play</button>
+            </div>
+        </div>
+    </section>
+
+    <div id="intro-popup" class="intro-popup" style="display:none;">
+        <div class="intro-popup-content">
+            <img src="bg.png" alt="Showdown" class="intro-bg-img" />
+            <h2 class="intro-title">CHALLENGER vs RPS-X</h2>
+            <div class="intro-getready">Get Ready!</div>
+<div class="intro-begin" id="intro-begin" style="display:none;">Let's Begin!</div>
+        </div>
+    </div>
+
+    <section id="game-section">
+        <div class="arena-container">
+            <div class="ai-profile">
+                <img src="rps-x.png" alt="RPS-X AI" class="ai-profile-img" />
+                <div class="ai-label">RPS-X</div>
+            </div>
+            <div class="ai-throw-area">
+                <div id="ai-throw-reel" class="ai-throw-reel-horizontal">
+                    <img src="ROCK.png" alt="Rock" class="throw-reel-img" />
+                    <img src="PAPER.png" alt="Paper" class="throw-reel-img" />
+                    <img src="SCISSORS.png" alt="Scissors" class="throw-reel-img" />
+                </div>
+                <div id="ai-choice-text" class="ai-choice-text">Computer chose: ____</div>
+            </div>
+            <!-- Modern Status Bar -->
+            <div class="status-bar">
+                <div class="status-round">
+                    <span class="status-icon">🎯</span>
+                    <span id="round-indicator" class="status-text">Round 1 of 5</span>
+                </div>
+                <div class="status-score">
+                    <span class="status-icon">🧑</span>
+                    <span id="score-player" class="status-score-num">0</span>
+                    <span class="status-vs">vs</span>
+                    <span class="status-icon">🤖</span>
+                    <span id="score-ai" class="status-score-num">0</span>
+                </div>
+                <div class="status-feedback">
+                    <span id="feedback" class="status-feedback-text">Make your move!</span>
+                    <span id="result" class="status-result-text"></span>
+                </div>
+            </div>
+            <div class="player-box">
+                <form id="player-form" class="player-form" autocomplete="off">
+                    <div class="player-options">
+                        <label class="player-option">
+                            <input type="radio" name="player-move" value="rock" hidden>
+                            <img src="ROCK.png" alt="Rock" />
+                            <span>Rock</span>
+                        </label>
+                        <label class="player-option">
+                            <input type="radio" name="player-move" value="paper" hidden>
+                            <img src="PAPER.png" alt="Paper" />
+                            <span>Paper</span>
+                        </label>
+                        <label class="player-option">
+                            <input type="radio" name="player-move" value="scissors" hidden>
+                            <img src="SCISSORS.png" alt="Scissors" />
+                            <span>Scissors</span>
+                        </label>
+                    </div>
+                    <button type="submit" id="throwBtn" class="neon-btn throw-btn-main">Throw!</button>
+                </form>
+            </div>
+            <div class="progress-bar">
+                <div id="progress-track" class="progress-track">
+                    <span class="progress-dot"></span>
+                    <span class="progress-dot"></span>
+                    <span class="progress-dot"></span>
+                    <span class="progress-dot"></span>
+                    <span class="progress-dot"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="gameover-popup" class="gameover-popup" style="display:none;">
+        <div class="gameover-popup-content">
+            <h2 class="gameover-main-title">GAME OVER</h2>
+            <h2 id="gameover-title" class="gameover-title">YOU WIN!</h2>
+            <div id="gameover-score" class="gameover-score"></div>
+            <div class="gameover-btns">
+                <button id="playAgainBtn" class="neon-btn big">Play Again</button>
+                <button id="backHomeBtn" class="neon-btn big">Back to Home</button>
+                <button id="viewScoreboardBtn" class="neon-btn big">View Scoreboard</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scoreboard Section -->
+    <section id="scoreboard-section" class="scoreboard-section" style="display:none;">
+        <div class="scoreboard-content">
+            <h2 class="scoreboard-title">🏆 Scoreboard</h2>
+            <div id="scoreboard-status" class="scoreboard-status"></div>
+            <table class="scoreboard-table">
+                <thead>
+                    <tr>
+                        <th>Wins</th>
+                        <th>Losses</th>
+                        <th>Draws</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="scoreboard-wins">0</td>
+                        <td id="scoreboard-losses">0</td>
+                        <td id="scoreboard-draws">0</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="scoreboard-btns">
+                <button id="scoreboardHomeBtn" class="neon-btn big">Home Page</button>
+                <button id="scoreboardPlayAgainBtn" class="neon-btn big">Play Again</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="about-section" class="about-section">
+    <div class="about-content glass-card">
+        <h2 class="about-title">HOW TO PLAY</h2>
+        <div class="about-subtext">A battle of logic and luck</div>
+        <div class="about-steps">
+            <div class="about-step glass-card">
+                <div class="about-step-icon"><img src="ROCK.png" alt="Rock" /></div>
+                <div class="about-step-desc">Choose Rock, Paper, or Scissors</div>
+            </div>
+            <div class="about-step glass-card">
+                <div class="about-step-icon"><img src="rps-x.png" alt="AI" /></div>
+                <div class="about-step-desc">AI responds</div>
+            </div>
+            <div class="about-step glass-card">
+                <div class="about-step-icon"><img src="SCISSORS.png" alt="Result" /></div>
+                <div class="about-step-desc">Win OR lose 5 rounds total</div>
+            </div>
+        </div>
+        <div class="about-rules glass-card">
+            <span class="about-rule-icon">🪨</span> beats <span class="about-rule-icon">✂️</span> &nbsp;|&nbsp;
+            <span class="about-rule-icon">✂️</span> beats <span class="about-rule-icon">📄</span> &nbsp;|&nbsp;
+            <span class="about-rule-icon">📄</span> beats <span class="about-rule-icon">🪨</span>
+        </div>
+        <div class="about-tip glass-card">
+            <span class="about-tip-icon">💡</span>
+            <span class="about-tip-text">Think ahead. The AI adapts!</span>
+        </div>
+        <button class="about-back-btn neon-btn"
+            onclick="document.querySelector('#landing').scrollIntoView({behavior:'smooth'})">Back to Top</button>
+    </div>
+</section>
+
+  
+
+<!-- Social Media Links -->
+
+    <footer class="site-footer" style="width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;margin-top:32px;">
+    <div class="footer-main">
+        <div class="footer-credits" style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+            <span class="footer-dev" style="font-family:'Orbitron',Arial,sans-serif;color:#fff;font-size:1rem;">
+                Designed & Developed by <b>Parth Mitake</b>
+            </span>
+            <div style="width:100%;margin:24px 0 0 0;display:flex;gap:24px;justify-content:center;align-items:center;">
+                <a href="https://www.linkedin.com/in/parth-mitake-168117316/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;color:#00fff7;font-family:'Orbitron',Arial,sans-serif;font-size:1.1rem;text-shadow:0 0 8px #00fff7;">
+                    <img src="in.png" alt="LinkedIn" style="width:28px;height:28px;vertical-align:middle;"> LinkedIn
+                </a>
+                <a href="mailto:your.email@example.com" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;color:#00fff7;font-family:'Orbitron',Arial,sans-serif;font-size:1.1rem;text-shadow:0 0 8px #00fff7;">
+                    <img src="mail.png" alt="Email" style="width:28px;height:28px;vertical-align:middle;"> Email
+                </a>
+                <a href="https://github.com/your-github-username" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;color:#00fff7;font-family:'Orbitron',Arial,sans-serif;font-size:1.1rem;text-shadow:0 0 8px #00fff7;">
+                    <img src="git.png.png" alt="GitHub" style="width:28px;height:28px;vertical-align:middle;"> GitHub
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+<script src="app.js"></script>
+</html>
